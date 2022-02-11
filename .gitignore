@@ -1,4 +1,1 @@
-# Files to ignore
-projekt1/besok.txt
-# Ladda inte upp bilderna till git
-projekt1/bilder/
+._.DS_Store
