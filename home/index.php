@@ -17,7 +17,8 @@
 
         <!-- Sektionen omringar artiklar (eg. blogposts)-->
         <section>
-            
+            <!-- Annonser -->
+            <?php include "view_ads.php" ?>
 
         </section>
 
