@@ -66,6 +66,13 @@ article {
     max-width: 200px;
 }
 
+.ad-in-list {
+    border: 5px solid #aa00ff;
+    margin: 10px;
+    padding: 5px;
+    min-height: 80px;
+}
+
 /* Footer */
 footer {
     background-color: #4f0076;
