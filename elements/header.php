@@ -6,8 +6,8 @@
     <nav>
         <!-- Huvudmenyn -->
         <ul>
-            <li><a href="../home/">Home</a></li>
-            <li><a href="../rapport/">Rapport</a></li>
+            <li><a href="../home/">Annonser</a></li>
+            <li><a href="../home/login.php">Registrera/Logga in</a></li>
         </ul>
     </nav>
 </header>

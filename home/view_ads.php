@@ -3,14 +3,13 @@
     <p>Här kommer datan</p>
     
     <?php
-        // Create connection
-        $conn = new mysqli($servername, $username, $password);
-
-        // Check connection
-        if ($conn->connect_error) {
-            die("Connection failed: " . $conn->connect_error);
+        $sql = "SELECT * FROM users"; // SQL kommandot vi vill köra
+        $stmt = $conn->query($sql); // Query är metoden. Returnerar FALSE eller mysqli_result objekt
+                
+        while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+            print("Användarnamn: " . $row["username"] . " " . $row["city"] . "<br>");
         }
-        echo "Connected successfully";
+
 
     ?>
 
