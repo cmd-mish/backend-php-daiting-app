@@ -22,6 +22,7 @@
             <?php if ($_REQUEST["page"] == "edit") :?>
                 <?php include "view_edit_profile.php" ?>
                 <?php include "view_edit_password.php" ?>
+                <?php include "view_delete_profile.php" ?>
             <?php else :?>
                 <?php include "view_profile.php" ?>
             <?php endif; ?>
