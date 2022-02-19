@@ -25,38 +25,41 @@
     <p>Har du redan ett konto? <a href="login.php?page=login">Logga in här!</a></p>
 
 </article>
-    <?php
-        if (!empty($_REQUEST["username"]) && !empty($_REQUEST["password"])) {
-            $username = test_input($_REQUEST["username"]);
-            $password = test_input($_REQUEST["password"]);
-            $password = hash("sha256", $password);
+<?php
+    if (!empty($_REQUEST["username"]) && !empty($_REQUEST["password"])) {
+        $username = test_input($_REQUEST["username"]);
+        $password = test_input($_REQUEST["password"]);
+        $password = hash("sha256", $password);
 
-            $fullname = test_input($_REQUEST["fullname"]);
-            if (empty($fullname)) $fullname = NULL;
-            
-            $city = test_input($_REQUEST["city"]);
-            if (empty($city)) $city = NULL;
+        $fullname = test_input($_REQUEST["fullname"]);
+        if (empty($fullname)) $fullname = NULL;
 
-            $email = test_input($_REQUEST["email"]);
-            if (empty($email)) $email = NULL;
+        $city = test_input($_REQUEST["city"]);
+        if (empty($city)) $city = NULL;
 
-            $text = test_input($_REQUEST["ad-text"]); 
-            if (empty($text)) $text = NULL;
+        $email = test_input($_REQUEST["email"]);
+        if (empty($email)) $email = NULL;
 
-            $salary = test_input($_REQUEST["salary"]);
-            if (empty($salary)) $salary = NULL;
+        $text = test_input($_REQUEST["ad-text"]);
+        if (empty($text)) $text = NULL;
 
-            $preference = test_input($_REQUEST["preference"]);
-            if (empty($preference)) $preference = NULL;
+        $salary = test_input($_REQUEST["salary"]);
+        if (empty($salary)) $salary = NULL;
 
-            $sql = "INSERT INTO users (id, username, fullname, password, email, city, text, salary, preference) VALUES (NULL, ?, ?, ?, ?, ?, ?, ?, ?)";
-            $stmt = $conn->prepare($sql);
+        $preference = test_input($_REQUEST["preference"]);
+        if (empty($preference)) $preference = NULL;
 
-            if ($stmt->execute([$username, $fullname, $password, $email, $city, $text, $salary, $preference])) {
-                print("Du har registrerats!");
-            } else {
-                print("Registrering misslyckades!");
-            }
+        $sql = "INSERT INTO users (id, username, fullname, password, email, city, text, salary, preference) VALUES (NULL, ?, ?, ?, ?, ?, ?, ?, ?)";
+        $stmt = $conn->prepare($sql);
+
+        if ($stmt->execute([$username, $fullname, $password, $email, $city, $text, $salary, $preference])) {
+            print("Du har registrerats!");
+            print("Välkommen, " . $username . "!");
+            $_SESSION["username"] = $username;
+            header("Refresh:2; url=./index.php");
+        } else {
+            print("Registrering misslyckades!");
         }
-        
-    ?>
+    }
+
+?>

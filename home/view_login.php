@@ -21,9 +21,9 @@
             $stmt->execute([$username, $password]);
 
             if ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
-                print("Loggad in som " . $row["fullname"]);
+                print("Välkommen, " . $row["fullname"] . "!");
                 $_SESSION["username"] = $row["username"];
-                header("Refresh:0; url=./index.php");
+                header("Refresh:2; url=./index.php");
             }
         }
     ?>
