@@ -17,9 +17,14 @@
 
         <!-- Sektionen omringar artiklar (eg. blogposts)-->
         <section>
-            <!-- Annonser -->
-            <?php include "view_register.php" ?>
 
+            <?php if ($_REQUEST["page"] == "register"): ?>
+                <!-- Registreringsformulär-->
+                <?php include "view_register.php" ?>
+            <?php else: ?>
+                <!-- Loginformulär -->
+                <?php include "view_login.php" ?>
+            <?php endif; ?>
         </section>
 
         <!-- Footern innehåller t.ex. somelänkar och kontaktuppg -->

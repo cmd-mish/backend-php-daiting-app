@@ -73,6 +73,10 @@ article {
     min-height: 80px;
 }
 
+.ad-in-list > h4 {
+    margin-top: 10px;
+}
+
 /* Footer */
 footer {
     background-color: #4f0076;

@@ -2,7 +2,7 @@
     <h2>Registrera dig</h2>
     <p>Fyll i registreringsformuläret för att skapa en profil</p>
     <p>
-        <form action="login.php" method="POST">
+        <form action="login.php?page=register" method="POST">
             Användarnamn: <input type="text" name="username"><br>
             Lösenord: <input type="password" name="password"><br><br>
 
@@ -21,24 +21,41 @@
             <input type="submit" value="Registrera dig">
         </form>
     </p>
-    
-    <?php
-        if (!empty($_REQUEST["username"]) && !empty($_REQUEST["password"]) && !empty($_REQUEST["email"])) {
-            $username = test_input($_REQUEST["username"]);
-            $fullname = test_input($_REQUEST["fullname"]); 
-            $epost = test_input($_REQUEST["email"]); 
-            $city = test_input($_REQUEST["city"]); 
-            $text = test_input($_REQUEST["ad-text"]); 
-            $salary = test_input($_REQUEST["salary"]); 
-            $preference = test_input($_REQUEST["preference"]);
 
+    <p>Har du redan ett konto? <a href="login.php?page=login">Logga in här!</a></p>
+
+</article>
+    <?php
+        if (!empty($_REQUEST["username"]) && !empty($_REQUEST["password"])) {
+            $username = test_input($_REQUEST["username"]);
             $password = test_input($_REQUEST["password"]);
             $password = hash("sha256", $password);
 
-            $sql = "INSERT INTO users (id, username, fullname, password, email, city, text, salary, preference) VALUES (NULL, ?, ?, ?, ?, ?, ?, ?, ?);";
+            $fullname = test_input($_REQUEST["fullname"]);
+            if (empty($fullname)) $fullname = NULL;
+            
+            $city = test_input($_REQUEST["city"]);
+            if (empty($city)) $city = NULL;
+
+            $email = test_input($_REQUEST["email"]);
+            if (empty($email)) $email = NULL;
+
+            $text = test_input($_REQUEST["ad-text"]); 
+            if (empty($text)) $text = NULL;
+
+            $salary = test_input($_REQUEST["salary"]);
+            if (empty($salary)) $salary = NULL;
+
+            $preference = test_input($_REQUEST["preference"]);
+            if (empty($preference)) $preference = NULL;
+
+            $sql = "INSERT INTO users (id, username, fullname, password, email, city, text, salary, preference) VALUES (NULL, ?, ?, ?, ?, ?, ?, ?, ?)";
             $stmt = $conn->prepare($sql);
-            if ($stmt->execute([$username, $fullname, $password, $epost, $city, $text, $salary, $preference])) {
+
+            if ($stmt->execute([$username, $fullname, $password, $email, $city, $text, $salary, $preference])) {
                 print("Du har registrerats!");
+            } else {
+                print("Registrering misslyckades!");
             }
         }
         
