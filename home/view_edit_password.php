@@ -1,9 +1,9 @@
 <article>
     <h2>Andra lösenord</h2>
     <form action="profile.php?page=edit" method="POST">
-        Gammalt lösenord: <input type="password" name="old-password"><br>
-        Nytt lösenord: <input type="password" name="new-password"><br>
-        Nytt lösenord igen: <input type="password" name="new-password-repeat"><br>
+        Gammalt lösenord: <br><input type="password" name="old-password"><br>
+        Nytt lösenord: <br><input type="password" name="new-password"><br>
+        Nytt lösenord igen: <br><input type="password" name="new-password-repeat"><br><br>
         <input type="submit" value="Spara">
     </form>
 </article>

@@ -3,8 +3,8 @@
     <p>Om du redan har ett konto kan du logga in här!</p>
     <p>
         <form action="login.php" method="GET">
-            Användarnamn: <input type="text" name="username-login"><br>
-            Lösenord: <input type="password" name="password-login"><br>
+            Användarnamn: <br><input type="text" name="username-login"><br>
+            Lösenord: <br><input type="password" name="password-login"><br><br>
             <input type="submit" value="Logga in">
         </form>
     </p>

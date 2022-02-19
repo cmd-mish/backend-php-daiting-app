@@ -66,14 +66,28 @@ article {
     max-width: 200px;
 }
 
-.ad-in-list {
+.ads-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.ad-in-grid {
     border: 5px solid #aa00ff;
     margin: 10px;
     padding: 5px;
-    min-height: 80px;
+    min-height: 200px;
+    width: 220px;
+    overflow-wrap: break-word;
 }
 
-.ad-in-list > h4 {
+.ad-in-grid > .user-details {
+    font-size: 12px;
+    color: gray;
+}
+
+
+.ad-in-grid > h4 {
     margin-top: 10px;
 }
 

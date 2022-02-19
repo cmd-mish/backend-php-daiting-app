@@ -10,16 +10,16 @@
     ?>
     <?php if ($row = $stmt->fetch(PDO::FETCH_ASSOC)) : ?>
         <form action="profile.php?page=edit" method="POST">
-            Fullständiga namn: <input type="text" name="fullname" value="<?= $row["fullname"] ?>"><br>
-            Stad: <input type="text" name="city" value="<?= $row["city"] ?>"><br>
-            Epost adress: <input type="text" name="email" value="<?= $row["email"] ?>"><br>
-            Årslön: <input type="number" name="salary" value="<?= $row["salary"] ?>"><br>
-            Berätta om dig: <textarea name="ad-text"><?= $row["text"] ?></textarea><br>
-            Preferens: <input type="radio" id="men" name="preference" value="1" <?php if ($row["preference"] == 1) :?> checked <?php endif; ?>><label for="men">Män</label>
+            <label for="fullname">Fullständiga namn: </label><br><input type="text" name="fullname" id="fullname" value="<?= $row["fullname"] ?>"><br>
+            <label for="city">Stad: </label><br><input type="text" name="city" id="city" value="<?= $row["city"] ?>"><br>
+            <label for="email">Epost adress:</label><br><input type="text" name="email" id="email" value="<?= $row["email"] ?>"><br>
+            <label for="salary">Årslön:</label><br><input type="number" name="salary" id="salary" value="<?= $row["salary"] ?>"><br>
+            <label for="ad-text">Berätta om dig:</label><br><textarea name="ad-text" id="ad-text" rows="5" cols="50"><?= $row["text"] ?></textarea><br>
+            Preferens: <br><input type="radio" id="men" name="preference" value="1" <?php if ($row["preference"] == 1) :?> checked <?php endif; ?>><label for="men">Män</label>
             <input type="radio" id="women" name="preference" value="2" <?php if ($row["preference"] == 2) :?> checked <?php endif; ?>><label for="women">Kvinnor</label>
             <input type="radio" id="both" name="preference" value="3" <?php if ($row["preference"] == 3) :?> checked <?php endif; ?>><label for="both">Båda</label>
             <input type="radio" id="other" name="preference" value="4" <?php if ($row["preference"] == 4) :?> checked <?php endif; ?>><label for="other">Annat</label>
-            <input type="radio" id="all" name="preference" value="5" <?php if ($row["preference"] == 5) :?> checked <?php endif; ?>><label for="all">Alla</label><br>
+            <input type="radio" id="all" name="preference" value="5" <?php if ($row["preference"] == 5) :?> checked <?php endif; ?>><label for="all">Alla</label><br><br>
         <input type="submit" value="Spara">
     </form>
     <?php endif; ?>
@@ -42,7 +42,7 @@
 
         if ($stmt->execute([$fullname, $city, $email, $salary, $text, $preference, $username])) {
             print("Success!");
-            header("Refresh:2; url=./profile.php");
+            header("Refresh:0; url=./profile.php");
         } else {
             print("Nåt gick fel!");
         }

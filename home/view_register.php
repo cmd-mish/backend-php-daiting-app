@@ -3,22 +3,20 @@
     <p>Fyll i registreringsformuläret för att skapa en profil</p>
     <p>
         <form action="login.php?page=register" method="POST">
-            Användarnamn: <input type="text" name="username"><br>
-            Lösenord: <input type="password" name="password"><br>
-            Lösenord igen: <input type="password" name="password-repeat"><br><br>
+            Användarnamn: <br><input type="text" name="username"><br>
+            Lösenord: <br><input type="password" name="password"><br>
+            Lösenord igen: <br><input type="password" name="password-repeat"><br><br>
 
-            Fullständiga namn: <input type="text" name="fullname"><br>
-            Stad: <input type="text" name="city"><br>
-            Epost adress: <input type="text" name="email"><br>
-            Årslön: <input type="number" name="salary"><br>
-            Berätta om dig: <textarea name="ad-text"></textarea><br>
+            Fullständiga namn: <br><input type="text" name="fullname"><br>
+            Stad: <br><input type="text" name="city"><br>
+            Epost adress: <br><input type="text" name="email"><br>
+            Årslön: <br><input type="number" name="salary"><br>
+            Berätta om dig: <br><textarea name="ad-text" rows="5" cols="50"></textarea><br>
             Preferens: <input type="radio" id="men" name="preference" value="1"><label for="men">Män</label>
             <input type="radio" id="women" name="preference" value="2"><label for="women">Kvinnor</label>
             <input type="radio" id="both" name="preference" value="3"><label for="both">Båda</label>
             <input type="radio" id="other" name="preference" value="4"><label for="other">Annat</label>
-            <input type="radio" id="all" name="preference" value="5"><label for="all">Alla</label><br>
-
-
+            <input type="radio" id="all" name="preference" value="5"><label for="all">Alla</label><br><br>
             <input type="submit" value="Registrera dig">
         </form>
     </p>
@@ -27,6 +25,8 @@
 
 </article>
 <?php
+    $error_code = 0;
+
     if (!empty($_REQUEST["username"]) && !empty($_REQUEST["password"]) && !empty($_REQUEST["password-repeat"])) {
         $username = test_input($_REQUEST["username"]);
         $password = test_input($_REQUEST["password"]);
@@ -38,22 +38,11 @@
         $passwords_match = $password == $password_repeat;
 
         $fullname = test_input($_REQUEST["fullname"]);
-        if (empty($fullname)) $fullname = NULL;
-
         $city = test_input($_REQUEST["city"]);
-        if (empty($city)) $city = NULL;
-
         $email = test_input($_REQUEST["email"]);
-        if (empty($email)) $email = NULL;
-
         $text = test_input($_REQUEST["ad-text"]);
-        if (empty($text)) $text = NULL;
-
         $salary = test_input($_REQUEST["salary"]);
-        if (empty($salary)) $salary = NULL;
-
         $preference = test_input($_REQUEST["preference"]);
-        if (empty($preference)) $preference = NULL;
 
         $sql = "INSERT INTO users (id, username, fullname, password, email, city, text, salary, preference) VALUES (NULL, ?, ?, ?, ?, ?, ?, ?, ?)";
         $stmt = $conn->prepare($sql);

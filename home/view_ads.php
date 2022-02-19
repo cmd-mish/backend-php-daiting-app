@@ -3,17 +3,31 @@
     <p>Här kommer datan</p>
     
     <?php
-        $sql = "SELECT * FROM users"; // SQL kommandot vi vill köra
-        $stmt = $conn->query($sql); // Query är metoden. Returnerar FALSE eller mysqli_result objekt
-                
-        while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
-            print("<div class=\"ad-in-list\"><h4>" .
-            $row["fullname"] . "</h4>" .
-            $row["city"] . ", tjänar " . $row["salary"] . " per månad, intresserad av " . $row["preference"] .
-            "</div>");
-        }
+        $sql = "SELECT fullname, email, city, text, salary, preference FROM users";
+        $stmt = $conn->prepare($sql);
+        $stmt->execute();
     ?>
+    <div class="ads-grid">
+        <?php foreach ($stmt->fetchAll() as $user) : ?>
+            <div class="ad-in-grid">
+                <h4><?= $user["fullname"]?></h4>
+                <p class="user-details">
+                    Från <?= $user["city"]?>,
+                    intresserad av  <?= output_preference($user["preference"]) ?>,
+                    årslön <?= $user["salary"]?>.
+                </p>
+                <p>
+                    <?= $user["text"]?>
+                </p>
 
+                <?php if (!empty($_SESSION["username"])) :?>
+                <p>
+                    <?= $user["email"]?>
+                </p>
+                <?php endif; ?>
+            </div>
+        <?php endforeach; ?>
+    </div>
     
 
 </article>
