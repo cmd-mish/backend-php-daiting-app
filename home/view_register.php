@@ -4,7 +4,8 @@
     <p>
         <form action="login.php?page=register" method="POST">
             Användarnamn: <input type="text" name="username"><br>
-            Lösenord: <input type="password" name="password"><br><br>
+            Lösenord: <input type="password" name="password"><br>
+            Lösenord igen: <input type="password" name="password-repeat"><br><br>
 
             Fullständiga namn: <input type="text" name="fullname"><br>
             Stad: <input type="text" name="city"><br>
@@ -26,10 +27,15 @@
 
 </article>
 <?php
-    if (!empty($_REQUEST["username"]) && !empty($_REQUEST["password"])) {
+    if (!empty($_REQUEST["username"]) && !empty($_REQUEST["password"]) && !empty($_REQUEST["password-repeat"])) {
         $username = test_input($_REQUEST["username"]);
         $password = test_input($_REQUEST["password"]);
         $password = hash("sha256", $password);
+
+        $password_repeat = test_input($_REQUEST["password-repeat"]);
+        $password_repeat = hash("sha256", $password_repeat);
+
+        $passwords_match = $password == $password_repeat;
 
         $fullname = test_input($_REQUEST["fullname"]);
         if (empty($fullname)) $fullname = NULL;
@@ -52,13 +58,16 @@
         $sql = "INSERT INTO users (id, username, fullname, password, email, city, text, salary, preference) VALUES (NULL, ?, ?, ?, ?, ?, ?, ?, ?)";
         $stmt = $conn->prepare($sql);
 
-        if ($stmt->execute([$username, $fullname, $password, $email, $city, $text, $salary, $preference])) {
-            print("Du har registrerats!");
+        if ($passwords_match && $stmt->execute([$username, $fullname, $password, $email, $city, $text, $salary, $preference])) {
+            print("Du har registrerats! ");
             print("Välkommen, " . $username . "!");
             $_SESSION["username"] = $username;
             header("Refresh:2; url=./index.php");
         } else {
-            print("Registrering misslyckades!");
+            print("Registrering misslyckades! ");
+            if (!$passwords_match) {
+                print("Lösenorden matchar inte!");
+            }
         }
     }
 

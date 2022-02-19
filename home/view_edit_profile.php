@@ -1,5 +1,5 @@
 <article>
-    <h2>Ändra din profil</h2>
+    <h2>Ändra dina profiluppgifter</h2>
 
     <?php
     $username = $_SESSION["username"];
@@ -46,8 +46,6 @@
         } else {
             print("Nåt gick fel!");
         }
-    } else {
-        print("Alla fält måste vara fyllda!");
     }
 
 ?>
