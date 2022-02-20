@@ -44,6 +44,11 @@ body {
     margin: 0;
     font-family: "Helvetice Neue", Helvetica, sans-serif;
 }
+
+h2 {
+    margin: 20px 0px 10px 0px;
+}
+
 #container {
     background-color: #fff;
     color: #3D3D3D;
@@ -92,7 +97,8 @@ article {
     margin: 10px;
     padding: 5px;
     min-height: 200px;
-    width: 90%;
+    max-width: 740px;
+    width: 95%;
     overflow-wrap: break-word;
 }
 
@@ -116,6 +122,12 @@ article {
 
 .obligatory {
     color: red;
+}
+
+.edit-profile-link {
+    font-size: 12px;
+    text-align: right;
+    margin: 0px;
 }
 
 /* Footer */

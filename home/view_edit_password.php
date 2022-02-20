@@ -32,6 +32,7 @@
             $stmt = $conn->prepare($sql);
             if ($stmt->execute([$new_password, $username])) {
                 print("Success!");
+                header("Refresh:0; url=./profile.php");
             } else {
                 print("Nåt gick fel!");
             }

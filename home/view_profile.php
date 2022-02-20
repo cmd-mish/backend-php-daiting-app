@@ -1,25 +1,30 @@
 <?php
-$username = $_SESSION["username"];
-$profile = test_input($_REQUEST["profile"]);
+$userid = $_SESSION["user_id"];
+$profileid = test_input($_REQUEST["id"]);
 
-if (!empty($profile)) {
-    $executable = $profile;
+if (!empty($profileid)) {
+    $executable = $profileid;
 } else {
-    $executable = $username;
+    $executable = $userid;
 }
 
-$sql = "SELECT username, fullname, city, email, salary, text, preference FROM users WHERE username = ?";
+$sql = "SELECT username, fullname, city, email, salary, text, preference FROM users WHERE id = ?";
 $stmt = $conn->prepare($sql);
 $stmt->execute([$executable]);
 ?>
 
 <article>
     <?php if ($user = $stmt->fetch(PDO::FETCH_ASSOC)) : ?>
-        <?php if ($username == $executable) :?>
+        <?php if ($userid == $executable) :?>
             <h2>Här är din profil, <?= $username ?>!</h2>
         <?php else : ?>
             <h2>Här är <?= $user["username"] ?>s profil!</h2></h2>
         <?php endif; ?>
+
+        <?php if ($userid == $executable) :?>
+            <p class="edit-profile-link"><a href="profile.php?page=edit">Ändra profilen</a></p>
+        <?php endif; ?>
+
         <div class="ad-full-page">
             <h4><?= $user["fullname"]?></h4>
             <p class="user-details">
@@ -35,8 +40,5 @@ $stmt->execute([$executable]);
                 <a href="mailto:<?= $user["email"]?>"><img src="../media/email.png" alt="Skicka ett mejl"></a>
             </p>
         </div>
-    <?php endif; ?>
-    <?php if ($username == $executable) :?>
-    <p><a href="profile.php?page=edit">Ändra profilen</a></p>
     <?php endif; ?>
 </article>

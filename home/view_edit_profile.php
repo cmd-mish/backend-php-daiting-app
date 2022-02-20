@@ -1,6 +1,6 @@
 <article>
     <h2>Ändra dina profiluppgifter</h2>
-
+    <p class="edit-profile-link"><a href="profile.php">Tillbaka</a></p>
     <?php
     $username = $_SESSION["username"];
 
@@ -49,5 +49,4 @@
             print("Nåt gick fel!");
         }
     }
-
 ?>

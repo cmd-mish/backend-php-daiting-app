@@ -58,9 +58,7 @@
 
         if (!$user_exists && $passwords_match && $stmt->execute([$username, $fullname, $password, $email, $city, $text, $salary, $preference])) {
             print("Du har registrerats! ");
-            print("Välkommen, " . $username . "!");
-            $_SESSION["username"] = $username;
-            header("Refresh:2; url=./index.php");
+            header("Refresh:2; url=./login.php");
         } else {
             print("Registrering misslyckades! ");
             if ($user_exists) {

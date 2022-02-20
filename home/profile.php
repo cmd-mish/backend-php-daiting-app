@@ -25,6 +25,7 @@
                 <?php include "view_delete_profile.php" ?>
             <?php else :?>
                 <?php include "view_profile.php" ?>
+                <?php include "view_comments.php" ?>
             <?php endif; ?>
         <?php else :?>
             <p>Du är inte inloggad! <a href="login.php">Logga in</a> för att kunna se profiler!</p>

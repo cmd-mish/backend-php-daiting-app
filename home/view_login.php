@@ -14,13 +14,14 @@
             $password = test_input($_REQUEST["password-login"]);
             $password = hash("sha256", $password);
 
-            $sql = "SELECT username, password, fullname FROM users WHERE username = ? AND password = ?";
+            $sql = "SELECT id, username, password, fullname FROM users WHERE username = ? AND password = ?";
             $stmt = $conn->prepare($sql);
             $stmt->execute([$username, $password]);
 
             if ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
                 print("Välkommen, " . $row["fullname"] . "!");
                 $_SESSION["username"] = $row["username"];
+                $_SESSION["user_id"] = $row["id"];
                 header("Refresh:2; url=./index.php");
             }
         }
