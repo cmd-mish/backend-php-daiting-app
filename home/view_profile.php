@@ -1,14 +1,25 @@
 <?php
 $username = $_SESSION["username"];
+$profile = test_input($_REQUEST["profile"]);
 
-$sql = "SELECT fullname, city, email, salary, text, preference FROM users WHERE username = ?";
+if (!empty($profile)) {
+    $executable = $profile;
+} else {
+    $executable = $username;
+}
+
+$sql = "SELECT username, fullname, city, email, salary, text, preference FROM users WHERE username = ?";
 $stmt = $conn->prepare($sql);
-$stmt->execute([$username]);
+$stmt->execute([$executable]);
 ?>
 
 <article>
-    <h2>Här är din profil, <?= $username ?>!</h2>
     <?php if ($user = $stmt->fetch(PDO::FETCH_ASSOC)) : ?>
+        <?php if ($username == $executable) :?>
+            <h2>Här är din profil, <?= $username ?>!</h2>
+        <?php else : ?>
+            <h2>Här är <?= $user["username"] ?>s profil!</h2></h2>
+        <?php endif; ?>
         <div class="ad-full-page">
             <h4><?= $user["fullname"]?></h4>
             <p class="user-details">
@@ -25,5 +36,7 @@ $stmt->execute([$username]);
             </p>
         </div>
     <?php endif; ?>
+    <?php if ($username == $executable) :?>
     <p><a href="profile.php?page=edit">Ändra profilen</a></p>
+    <?php endif; ?>
 </article>

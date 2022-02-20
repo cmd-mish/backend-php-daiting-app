@@ -27,10 +27,11 @@
                 <?php include "view_profile.php" ?>
             <?php endif; ?>
         <?php else :?>
-            <p>Du är inte inloggad! <a href="login.php">Logga in</a> för att se din profil!</p>
+            <p>Du är inte inloggad! <a href="login.php">Logga in</a> för att kunna se profiler!</p>
         <?php endif; ?>
 
     </section>
+
 
     <!-- Footern innehåller t.ex. somelänkar och kontaktuppg -->
     <?php include "../elements/footer.php" ?>

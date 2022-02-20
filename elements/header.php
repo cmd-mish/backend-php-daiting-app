@@ -1,6 +1,6 @@
 <header>
     <!-- Logo och meny i headern -->
-    <a href="../home"><img src="../media/php-icon.svg" alt="Website logo" /></a>
+    <a href="../home"><img src="../media/heart-icon.svg" alt="Website logo" /></a>
     <div id="logo">Dejtapp</div>
 
     <nav>

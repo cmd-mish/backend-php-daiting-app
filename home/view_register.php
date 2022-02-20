@@ -9,7 +9,7 @@
             <label for="fullname">Fullständiga namn<span class="obligatory">*</span></label><br><input type="text" name="fullname" id="fullname"><br>
             <label for="city">Stad<span class="obligatory">*</span></label><br><input type="text" name="city" id="city"><br>
             <label for="email">E-post adress<span class="obligatory">*</span></label><br><input type="text" name="email" id="email"><br>
-            <label for="salary">Årslön</label><br><input type="number" name="salary" id="salary"><br>
+            <label for="salary">Årslön</label><br><input type="number" name="salary" id="salary">&euro;<br>
             <label for="ad-text">Berätta om dig</label><br><textarea name="ad-text" rows="5" cols="50" id="ad-text"></textarea><br>
             Preferens<span class="obligatory">*</span> <input type="radio" id="men" name="preference" value="1"><label for="men">Män</label>
             <input type="radio" id="women" name="preference" value="2"><label for="women">Kvinnor</label>
