@@ -1,7 +1,7 @@
 <article>
     <h2>Ta bort profilen</h2>
     <form action="profile.php?page=edit" method="POST">
-        Skriv din lösenord här för om du vill ta bort din profil: <input type="password" name="password">
+        <label for="password-delete">Skriv din lösenord här om du vill ta bort din profil</label> <input type="password" name="password" id="password-delete">
         <input type="submit" value="Ta bort profilen">
     </form>
 </article>

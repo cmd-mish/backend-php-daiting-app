@@ -76,19 +76,46 @@ article {
     border: 5px solid #aa00ff;
     margin: 10px;
     padding: 5px;
+    height: 200px;
+    width: 350px;
+}
+
+.text-in-ad {
+    height: 90px;
+    overflow-wrap: break-word;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.ad-full-page {
+    border: 5px solid #aa00ff;
+    margin: 10px;
+    padding: 5px;
     min-height: 200px;
-    width: 220px;
+    width: 90%;
     overflow-wrap: break-word;
 }
 
-.ad-in-grid > .user-details {
+.ad-in-grid > .user-details, .ad-full-page > .user-details {
+    margin-top: 1px;
     font-size: 12px;
     color: gray;
 }
 
 
-.ad-in-grid > h4 {
+.ad-in-grid > h4, .ad-full-page > h4 {
     margin-top: 10px;
+    margin-bottom: 5px;
+}
+
+.ad-in-grid > .actions {
+    font-size: 12px;
+    color: gray;
+    text-decoration: none;
+}
+
+.obligatory {
+    color: red;
 }
 
 /* Footer */
