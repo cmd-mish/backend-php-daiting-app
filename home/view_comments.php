@@ -16,15 +16,19 @@
 <article>
     <h2 id="comment">Kommentarerna</h2>
     <?php if ($stmt->rowCount() == 0) : ?>
-        <p>Finns inga kommentarer att visa.</p>
+        <p><i>Finns inga kommentarer att visa.</i></p>
     <?php endif; ?>
     <?php foreach ($stmt->fetchAll() as $comment) :?>
         <p><a href="profile.php?id=<?= $comment["sender_id"] ?>"><?= $comment["username"] ?></a><?= ": " . $comment["comment"]?></p>
     <?php endforeach; ?>
-    <form action="profile.php?id=<?= $comment["receiver_id"] ?>#comment" method="POST">
-        <label for="comment-field">Skriv en kommentar</label><br><textarea name="comment-field" id="comment-field" rows="5" cols="50"></textarea><br>
-        <input type="submit" value="Skicka">
-    </form>
+    <?php if($userid != $executable) :?>
+        <form action="profile.php?id=<?= $executable ?>#comment" method="POST">
+            <label for="comment-field">Skriv en kommentar</label><br><textarea name="comment-field" id="comment-field" rows="5" cols="50"></textarea><br>
+            <input type="submit" value="Skicka">
+        </form>
+    <?php else: ?>
+        <p><i>Du får skriva kommentarer bara på andras sidor.</i></p>
+    <?php endif; ?>
 </article>
 
 <?php
@@ -36,7 +40,6 @@
         if ($stmt->execute([$userid, $executable, $comment])) {
             print("Comment sent");
             header("Refresh:2");
-
         } else {
             print("Error");
         }

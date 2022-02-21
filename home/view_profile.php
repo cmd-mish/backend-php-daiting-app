@@ -16,7 +16,7 @@ $stmt->execute([$executable]);
 <article>
     <?php if ($user = $stmt->fetch(PDO::FETCH_ASSOC)) : ?>
         <?php if ($userid == $executable) :?>
-            <h2>Här är din profil, <?= $username ?>!</h2>
+            <h2>Här är din profil, <?= $user["username"] ?>!</h2>
         <?php else : ?>
             <h2>Här är <?= $user["username"] ?>s profil!</h2></h2>
         <?php endif; ?>

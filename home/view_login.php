@@ -22,7 +22,9 @@
                 print("Välkommen, " . $row["fullname"] . "!");
                 $_SESSION["username"] = $row["username"];
                 $_SESSION["user_id"] = $row["id"];
-                header("Refresh:2; url=./index.php");
+                header("Refresh:1; url=./index.php");
+            } else {
+                print("Fel användarnamn eller lösenord!");
             }
         }
     ?>
