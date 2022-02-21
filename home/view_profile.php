@@ -38,6 +38,7 @@ $stmt->execute([$executable]);
             <?php endif; ?>
             <p class="actions">
                 <a href="mailto:<?= $user["email"]?>"><img src="../media/email.png" alt="Skicka ett mejl"></a>
+                <?php include "view_likes.php" ?>
             </p>
         </div>
     <?php endif; ?>

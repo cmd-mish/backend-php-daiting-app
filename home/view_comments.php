@@ -8,7 +8,7 @@
         $executable = $userid;
     }
 
-    $sql = "SELECT comments.comment, comments.sender_id, comments.receiver_id, users.username FROM comments INNER JOIN users ON comments.sender_id = users.id WHERE comments.receiver_id = ?";
+    $sql = "SELECT comments.comment, comments.sender_id, comments.receiver_id, comments.timestamp, users.username FROM comments INNER JOIN users ON comments.sender_id = users.id WHERE comments.receiver_id = ?";
     $stmt = $conn->prepare($sql);
     $stmt->execute([$executable]);
 ?>
@@ -19,7 +19,7 @@
         <p><i>Finns inga kommentarer att visa.</i></p>
     <?php endif; ?>
     <?php foreach ($stmt->fetchAll() as $comment) :?>
-        <p><a href="profile.php?id=<?= $comment["sender_id"] ?>"><?= $comment["username"] ?></a><?= ": " . $comment["comment"]?></p>
+        <p><a href="profile.php?id=<?= $comment["sender_id"] ?>"><?= $comment["username"] ?></a><span class="timestamp"><?= " den " . $comment["timestamp"] ?></span><?= ": " . $comment["comment"]?></p>
     <?php endforeach; ?>
     <?php if($userid != $executable) :?>
         <form action="profile.php?id=<?= $executable ?>#comment" method="POST">

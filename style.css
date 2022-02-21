@@ -123,10 +123,25 @@ article {
     color: red;
 }
 
+.timestamp {
+    font-size: 12px;
+    color: gray;
+}
+
 .edit-profile-link {
     font-size: 12px;
     text-align: right;
     margin: 0px;
+}
+
+.like-image {
+    width: 24px;
+    height: 24px;
+}
+
+#like-button-active, #like-button-inactive {
+    background: none;
+    border: none;
 }
 
 /* Footer */
