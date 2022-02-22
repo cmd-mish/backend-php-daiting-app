@@ -14,9 +14,9 @@
     $no_comments = $stmt->rowCount() == 0;
     $comment_array = $stmt->fetchAll();
 ?>
-<?php if ($user) : ?> // $user är en variabel från view_profile.php
+<?php if ($user) : ?>
 <article>
-    <h2 id="comment">Kommentarerna</h2>
+    <h2 id="comment">Kommentarer</h2>
     <?php if ($no_comments) : ?>
         <p><i>Finns inga kommentarer att visa.</i></p>
     <?php endif; ?>
