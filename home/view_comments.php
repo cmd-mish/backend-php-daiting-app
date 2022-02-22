@@ -11,14 +11,16 @@
     $sql = "SELECT comments.comment, comments.sender_id, comments.receiver_id, comments.timestamp, users.username FROM comments INNER JOIN users ON comments.sender_id = users.id WHERE comments.receiver_id = ?";
     $stmt = $conn->prepare($sql);
     $stmt->execute([$executable]);
+    $no_comments = $stmt->rowCount() == 0;
+    $comment_array = $stmt->fetchAll();
 ?>
-
+<?php if ($user) : ?> // $user är en variabel från view_profile.php
 <article>
     <h2 id="comment">Kommentarerna</h2>
-    <?php if ($stmt->rowCount() == 0) : ?>
+    <?php if ($no_comments) : ?>
         <p><i>Finns inga kommentarer att visa.</i></p>
     <?php endif; ?>
-    <?php foreach ($stmt->fetchAll() as $comment) :?>
+    <?php foreach ($comment_array as $comment) :?>
         <p><a href="profile.php?id=<?= $comment["sender_id"] ?>"><?= $comment["username"] ?></a><span class="timestamp"><?= " den " . $comment["timestamp"] ?></span><?= ": " . $comment["comment"]?></p>
     <?php endforeach; ?>
     <?php if($userid != $executable) :?>
@@ -30,6 +32,7 @@
         <p><i>Du får skriva kommentarer bara på andras sidor.</i></p>
     <?php endif; ?>
 </article>
+<?php endif; ?>
 
 <?php
     $comment = test_input($_REQUEST["comment-field"]);

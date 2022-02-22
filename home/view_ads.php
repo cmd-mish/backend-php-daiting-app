@@ -1,23 +1,25 @@
 <article>
     <h2>Annonserna</h2>
     <?php
-        $sql = "SELECT id, username, fullname, email, city, text, salary, preference FROM users LIMIT 10";
+        $sql = "SELECT id, username, fullname, email, city, text, salary, preference, rating FROM users";
         $stmt = $conn->prepare($sql);
         $stmt->execute();
     ?>
+    <p class="ad-filter">
+        <form action="index.php">
+            <label for="limit">Antal annonser per sida:</label>
+            <input type="number" id="limit" value="<?= $_SESSION["ads_max"] ?>">
+            <input type="submit" value="OK">
+        </form>
+    </p>
     <div class="ads-grid">
         <?php foreach ($stmt->fetchAll() as $user) : ?>
             <div class="ad-in-grid">
                 <h4><?= $user["fullname"]?></h4>
                 <p class="user-details">
                     Från <?= $user["city"]?>,
-                    intresserad av <?= output_preference($user["preference"])?><?php if ($user["salary"] != NULL) :?>, årslön <?= $user["salary"]?>&euro;<?php endif; ?>.
+                    intresserad av <?= output_preference($user["preference"])?><?php if ($user["salary"] != NULL) :?>, årslön <?= $user["salary"]?>&euro;<?php endif; ?>, gillat av <?= $user["rating"] ?>.
                 </p>
-                <?php if ($user["text"] != NULL) :?>
-                    <div class="text-in-ad">
-                        "<?= substr($user["text"], 0, 250)?>"
-                    </div>
-                <?php endif; ?>
                 <?php if (!empty($_SESSION["username"])) :?>
                     <p class="actions">
                         <a href="profile.php?id=<?= $user["id"] ?>"><img src="../media/profile.png" alt="Visa profilsidan"></a>
@@ -31,6 +33,12 @@
                         <img src="../media/comment-inactive.png" alt="Logga in för att kunna lämna en kommentar">
                     </p>
                 <?php endif; ?>
+                <?php if ($user["text"] != NULL) :?>
+                    <div class="text-in-ad">
+                        "<?= substr($user["text"], 0, 250)?>"
+                    </div>
+                <?php endif; ?>
+
             </div>
         <?php endforeach; ?>
     </div>

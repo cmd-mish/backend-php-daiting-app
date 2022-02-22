@@ -103,6 +103,7 @@ article {
 
 .ad-in-grid > .user-details, .ad-full-page > .user-details {
     margin-top: 1px;
+    margin-bottom: 2px;
     font-size: 12px;
     color: gray;
 }
@@ -114,6 +115,7 @@ article {
 }
 
 .ad-in-grid > .actions {
+    margin-top: 3px;
     font-size: 12px;
     color: gray;
     text-decoration: none;
@@ -121,6 +123,10 @@ article {
 
 .obligatory {
     color: red;
+}
+
+#limit {
+    width: 3em;
 }
 
 .timestamp {
@@ -132,6 +138,16 @@ article {
     font-size: 12px;
     text-align: right;
     margin: 0px;
+}
+
+.actions-container {
+    display: grid;
+    grid-template-columns: 24px 5px;
+    grid-gap: 10px;
+}
+
+.actions-box {
+    align-self: center;
 }
 
 .like-image {

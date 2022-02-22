@@ -31,15 +31,15 @@ $stmt->execute([$executable]);
                 Från <?= $user["city"]?>,
                 intresserad av <?= output_preference($user["preference"])?><?php if ($user["salary"] != NULL) :?>, årslön <?= $user["salary"]?><?php endif; ?>.
             </p>
+            <a href="mailto:<?= $user["email"]?>"><img src="../media/email.png" alt="Skicka ett mejl"></a>
             <?php if ($user["text"] != NULL) :?>
                 <p>
                     <?= $user["text"]?>
                 </p>
             <?php endif; ?>
-            <p class="actions">
-                <a href="mailto:<?= $user["email"]?>"><img src="../media/email.png" alt="Skicka ett mejl"></a>
-                <?php include "view_likes.php" ?>
-            </p>
+                <div class="actions-container">
+                    <?php include "view_likes.php" ?>
+                </div>
         </div>
     <?php endif; ?>
 </article>
