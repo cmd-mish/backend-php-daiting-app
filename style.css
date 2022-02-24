@@ -167,6 +167,10 @@ footer {
     padding: 5px;
 }
 
+footer > a {
+    color: white;
+}
+
 /* Responsiv styling */
 @media (max-width: 640px) {
     header {

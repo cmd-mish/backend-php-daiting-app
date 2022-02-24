@@ -35,7 +35,7 @@
         $stmt = $conn->prepare($sql);
         $stmt->execute([$userid, $executable]);
 
-        $new_rating = $liked + 1;
+        $new_rating = $total_likes + 1;
 
         $sql = "UPDATE users SET rating = ? WHERE id = ?";
         $stmt = $conn->prepare($sql);
@@ -48,7 +48,7 @@
         $stmt->execute([$userid, $executable]);
         header("Refresh:0");
 
-        $new_rating = $liked - 1;
+        $new_rating = $total_likes - 1;
 
         $sql = "UPDATE users SET rating = ? WHERE id = ?";
         $stmt = $conn->prepare($sql);

@@ -71,13 +71,13 @@
                 print("<br>Fullständiga namn fältet är tomt");
             }
             if (empty($city)) {
-                print("<br>Stad fältet är tomt");
+                print("<br>Stad fältet är tomt!");
             }
             if (empty($email)) {
-                print("<br>E-post fältet är tomt");
+                print("<br>E-post fältet är tomt!");
             }
             if (empty($preference)) {
-                print("<br>Preferens är tom");
+                print("<br>Preferens är tom!");
             }
         }
     }
